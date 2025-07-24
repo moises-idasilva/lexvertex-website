@@ -263,6 +263,20 @@ footer {
         gap: 1rem;
     }
 
+    .nav-links {
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    .logo img {
+        width: 220px;
+
+    }
+
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
     .why-card,
     .about-content {
         flex-direction: column;

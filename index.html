@@ -6,6 +6,10 @@
     <title>Lex Vertex Legal Consulting</title>
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
     <meta
       name="description"
       content="Lex Vertex Legal Consulting - Your trusted partner for legal advice and consulting services in Brazil."
@@ -140,27 +144,41 @@
         <form id="contact-form">
           <div class="form-row">
             <div class="form-group">
-              <label for="name">Name</label>
+              <label for="name"><i class="fa fa-user"></i> Name</label>
               <input type="text" id="name" name="name" required />
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email"><i class="fa fa-envelope"></i> Email</label>
               <input type="email" id="email" name="email" required />
             </div>
           </div>
           <div class="form-group">
-            <label for="message">Message</label>
+            <label for="message"
+              ><i class="fa fa-comment-dots"></i> Message</label
+            >
             <textarea id="message" name="message" rows="4" required></textarea>
           </div>
-          <button type="submit">Send Message</button>
+          <button type="submit">
+            <i class="fa fa-paper-plane"></i> Send Message
+          </button>
         </form>
-        <div class="contact-info">
+        <div class="contact-info" style="margin-top: 2rem">
           <p>
-            Email:
+            <i class="fa fa-envelope"></i>
+            <strong>Email:</strong>
             <a href="mailto:moises@lexvertex.com">moises@lexvertex.com</a>
           </p>
-          <p>Phone/WhatsApp: <a href="tel:+1234567890">+1234-567-890</a></p>
-          <p>Address: Av. Paulista, São Paulo, Brazil</p>
+          <p>
+            <i class="fab fa-whatsapp"></i>
+            <strong>Phone/WhatsApp:</strong>
+            <a href="https://wa.me/+5562992818615" target="_blank"
+              >+55 (62) 9 9281-8615</a
+            >
+          </p>
+          <p>
+            <i class="fa fa-map-marker-alt"></i>
+            <strong>Location:</strong> Goiânia, Goiás, Brazil
+          </p>
         </div>
       </section>
     </main>
