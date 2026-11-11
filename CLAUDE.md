@@ -59,6 +59,17 @@ page's focus is Brazil as a whole, never Goiânia.
 - `images/logo.png` is the client's logo (white outline on transparent; unusable on the light ground);
   the nav uses the `arc` mark with the name until a dark or SVG version exists.
 
+## SEO and AI search
+
+- Every page has a canonical URL, hreflang links for all six languages, Open Graph and Twitter tags, and
+  `robots` meta; `credits.html` is `noindex, follow`.
+- JSON-LD (`LegalService` with its services, `WebSite`, `WebPage`) is generated per language by
+  `tools/build-i18n.mjs` from the same translations; edit the `SERVICES` list there when a practice area changes.
+- `robots.txt` allows all crawlers, AI crawlers included, and points to `sitemap.xml` (update its
+  `lastmod` dates when content changes). `llms.txt` is the plain-text summary for AI assistants: keep it
+  in step with the page.
+- Domain used everywhere: `https://www.lexvertex.com/`.
+
 ## Performance
 
 Aim for a high Google PageSpeed score: keep total transfer around 500 KB, images AVIF and sized to their

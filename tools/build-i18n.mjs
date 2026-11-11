@@ -47,7 +47,7 @@ function translate(html, dict, missing) {
   // head: the title and the description and share texts only
   let h = head
     .replace(/<title>([^<]*)<\/title>/, (m, x) => `<title>${t(x)}</title>`)
-    .replace(/(<meta (?:name="description"|property="og:(?:title|description)") content=")([^"]*)"/g, (m, a, x) => `${a}${t(x)}"`);
+    .replace(/(<meta (?:name="description"|property="og:(?:title|description|image:alt)"|name="twitter:(?:title|description)") content=")([^"]*)"/g, (m, a, x) => `${a}${t(x)}"`);
   // body: text nodes and translatable attributes, outside comments and scripts
   const b = chunks(body).map((part, i) => {
     if (i % 2) return part;
@@ -75,13 +75,58 @@ const hrefFrom = (from, to) => {
 };
 const flag = (l, prefix, eager) => `<img class="flag" src="${prefix}flags/${l.flag}.svg" width="20" height="14" alt=""${eager ? '' : ' loading="lazy" decoding="async"'}>`;
 
+// structured data for search engines and AI assistants: the firm, its four services, the site and this page,
+// in the page's language (every text comes from the same translations as the page)
+const SERVICES = [
+  ['Corporate law', 'Governance, mergers, acquisitions and corporate compliance, from the articles of association to the closing documents.'],
+  ['Intellectual property', 'Trademark and patent filings with INPI, enforcement against copies, and litigation when a right is infringed.'],
+  ['Litigation support', "Strategy and representation in civil, commercial and labour disputes, from the first notice to the court's decision."],
+  ['Compliance and regulatory affairs', 'Compliance programmes and risk reviews written for your sector, and kept current as Brazilian rules change.'],
+  ['Foreign companies entering Brazil', 'Labour rules, tax law and frequent regulatory change catch out many firms new to Brazil. We set out the rules that apply before you hire, sign or invest.'],
+];
+function jsonld(lang, dict) {
+  const tr = (k) => (dict && dict[k]) || k;
+  const page = urlOf(lang);
+  const desc = tr('Corporate, intellectual property, litigation and compliance advice under Brazilian law, for Brazilian companies and foreign firms entering the market.');
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'LegalService', '@id': SITE + '#firm',
+        name: 'Lex Vertex Legal Consulting', alternateName: 'Lex Vertex',
+        url: SITE, image: SITE + 'share.jpg', description: desc,
+        email: 'moises@lexvertex.com',
+        address: { '@type': 'PostalAddress', addressLocality: 'Goiânia', addressRegion: 'GO', addressCountry: 'BR' },
+        areaServed: { '@type': 'Country', name: 'Brazil' },
+        knowsLanguage: LANGS.map(l => l.code),
+        knowsAbout: ['Brazilian law', ...SERVICES.slice(0, 4).map(([n]) => tr(n))],
+        contactPoint: { '@type': 'ContactPoint', contactType: 'customer service', email: 'moises@lexvertex.com', url: page + '#consult', availableLanguage: LANGS.map(l => l.code) },
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog', name: tr('Practice areas'),
+          itemListElement: SERVICES.map(([n, d]) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: tr(n), description: tr(d), areaServed: { '@type': 'Country', name: 'Brazil' }, provider: { '@id': SITE + '#firm' } } })),
+        },
+      },
+      { '@type': 'WebSite', '@id': SITE + '#website', url: SITE, name: 'Lex Vertex', inLanguage: LANGS.map(l => l.code), publisher: { '@id': SITE + '#firm' } },
+      {
+        '@type': 'WebPage', '@id': page + '#webpage', url: page, inLanguage: lang.code,
+        name: tr('Lex Vertex: business law firm in Brazil'), description: desc,
+        isPartOf: { '@id': SITE + '#website' }, about: { '@id': SITE + '#firm' },
+        primaryImageOfPage: { '@type': 'ImageObject', url: SITE + 'share.jpg', width: 1440, height: 900 },
+      },
+    ],
+  };
+}
+
 function blocks(html, lang, dict) {
   const prefix = lang.dir ? '../' : '';
   const label = dict?.Language ?? 'Language';
   const alternates = [
     `<link rel="canonical" href="${urlOf(lang)}">`,
+    `<meta property="og:url" content="${urlOf(lang)}">`,
+    ...LANGS.filter(l => l !== lang).map(l => `<meta property="og:locale:alternate" content="${l.og}">`),
     ...LANGS.map(l => `<link rel="alternate" hreflang="${l.code}" href="${urlOf(l)}">`),
     `<link rel="alternate" hreflang="x-default" href="${urlOf(LANGS[0])}">`,
+    `<script type="application/ld+json">${JSON.stringify(jsonld(lang, dict))}</script>`,
   ].join('\n');
   const link = (l, cls) => `<a class="${cls}" href="${hrefFrom(lang, l)}" hreflang="${l.code}" lang="${l.code}"${l === lang ? ' aria-current="true"' : ''}>${flag(l, prefix)}<span>${l.name}</span></a>`;
   const chev = '<svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
