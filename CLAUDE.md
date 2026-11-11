@@ -13,9 +13,12 @@ page's focus is Brazil as a whole, never Goiânia.
 ## Stack
 
 - Plain HTML; the only build step is `node tools/build-i18n.mjs` for the translated pages. Root files: `index.html`, `credits.html`, `favicon.svg`, `share.jpg`, `sitemap.xml`.
-- `assets/` is the design-taste-frontend skill kit (`system.css`, `system.js`, `layout/`, `motion/`,
-  `moments/`, `ui/`). Never edit kit files; page-specific CSS lives in the `<style>` blocks in
-  `index.html`.
+- `assets/` holds only the kit files the pages load (`system.css`, `system.js`, `layout/`, `motion/`,
+  `moments/` with `photo-chapters` and `picture-develops`, `ui/`, `effects/fx.js`) plus `img/` (the AVIF
+  photographs and `credits.json`, the source of `credits.html`). The rest of the design-taste-frontend
+  kit was removed; to use another kit part (a different moment, a UI fragment, a diagram, icons), copy it
+  back from the skill's `assets/` folder. Never edit kit files; page-specific CSS lives in the `<style>`
+  blocks in `index.html`.
 - Built with the `design-taste-frontend` skill. Re-run its checks after changes
   (`copy-lint.mjs`, `consistency.mjs`, `assets/layout/check.mjs`, `perf.mjs`).
   `.taste-skill/` (checker state, waivers) and `shots/` are local build files, git-ignored.
