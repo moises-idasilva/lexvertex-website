@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-type="service" data-radius="soft" data-buttons="arrow" data-motion>
+<html lang="en-GB" data-type="service" data-radius="soft" data-buttons="arrow" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -8,15 +8,25 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lex Vertex: business law firm in Brazil">
 <meta property="og:description" content="Corporate, intellectual property, litigation and compliance advice under Brazilian law.">
-<meta property="og:image" content="share.jpg">
+<meta property="og:image" content="https://www.lexvertex.com/share.jpg">
+<meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#f7f9f8">
-<!-- <link rel="canonical" href="https://www.lexvertex.com/"> : confirm the domain with the client, then uncomment -->
+<!--i18n:alternates-->
+<link rel="canonical" href="https://www.lexvertex.com/">
+<link rel="alternate" hreflang="en-GB" href="https://www.lexvertex.com/">
+<link rel="alternate" hreflang="es-ES" href="https://www.lexvertex.com/es/">
+<link rel="alternate" hreflang="fr-FR" href="https://www.lexvertex.com/fr/">
+<link rel="alternate" hreflang="pt-BR" href="https://www.lexvertex.com/pt-br/">
+<link rel="alternate" hreflang="de-DE" href="https://www.lexvertex.com/de/">
+<link rel="alternate" hreflang="zh-CN" href="https://www.lexvertex.com/zh/">
+<link rel="alternate" hreflang="x-default" href="https://www.lexvertex.com/">
+<!--/i18n:alternates-->
 <meta name="site-kind" content="other">
 <meta name="page-type" content="service">
 <!-- the hero photograph is the LCP: fetch it first -->
-<link rel="preload" as="image" type="image/avif" href="assets/img/photo-f34410442-1280.avif" imagesrcset="assets/img/photo-f34410442-640.avif 640w, assets/img/photo-f34410442-960.avif 960w, assets/img/photo-f34410442-1280.avif 1280w, assets/img/photo-f34410442-1600.avif 1600w, assets/img/photo-f34410442-2000.avif 2000w" imagesizes="(max-width: 1023px) 100vw, 1020px" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" href="assets/img/photo-f34410442-1280.avif" imagesrcset="assets/img/photo-f34410442-640.avif 640w, assets/img/photo-f34410442-960.avif 960w, assets/img/photo-f34410442-1280.avif 1280w, assets/img/photo-f34410442-1600.avif 1600w, assets/img/photo-f34410442-2000.avif 2000w" imagesizes="(max-width: 639px) 200vw, (max-width: 1023px) 100vw, 1020px" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400..700&family=Libre+Franklin:wght@400..600&display=swap" rel="stylesheet">
@@ -48,7 +58,7 @@
   @media (max-width: 639px) { #brazil .develop, #consult .consult__photo { aspect-ratio: auto; height: 100%; margin-top: 0; align-self: stretch; } }
   /* the consultation form's panel */
   .form-panel { background: var(--g-alt, var(--surface)); border-radius: var(--r-lg); padding: var(--s-6); }
-  @media (max-width: 639px) { .form-panel { padding: var(--s-5); } }
+  @media (max-width: 639px) { .form-panel { padding: var(--s-4); } }
   .consult__photo { margin: 0; border-radius: var(--r-lg); overflow: hidden; align-self: stretch; }
   @media (min-width: 1024px) { .consult__photo { min-height: min(708px, calc(100svh - 192px)); } }
   .consult__photo > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 58% 55%; }
@@ -56,6 +66,27 @@
   /* the tablet stacks the form split: two screens there; the market-entry photograph goes wide so that section keeps one */
   @media (min-width: 640px) and (max-width: 1023px) { #brazil .develop { aspect-ratio: 21 / 9; } #consult .consult__photo { aspect-ratio: 3 / 1; } }
   @media (min-width: 1024px) and (max-width: 1279px) { .form-panel { padding: var(--s-5); } }
+  /* Chinese: the Latin faces carry no Chinese glyphs, so the system's own CJK faces take over (no extra download) */
+  html:lang(zh) { --font-display: "Source Serif 4", "Songti SC", "Noto Serif SC", "SimSun", serif; --font-text: "Libre Franklin", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif; --display-tracking: 0; --display-tracking-xl: 0; }
+  /* the language list in the nav panel and the footer */
+  /* the footer's language row sits on the page's own columns: six across, three on a tablet, two on a phone */
+  .lang-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 24px; margin-top: var(--s-4); font-size: var(--t-small); }
+  .lang-grid a { min-height: 44px; }
+  @media (max-width: 1023px) { .lang-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  @media (max-width: 639px) { .lang-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; } }
+  .lang-grid a[aria-current="true"], .lang-menu .lang-link[aria-current="true"] { font-weight: 500; }
+  .lang-link, .menu-col a.lang-link, .nav__link.lang-current { display: inline-flex; align-items: center; gap: var(--s-2); }
+  /* the language menu: a small dropdown right under its selector, as wide as the longest name */
+  @media (min-width: 1024px) {
+    .nav__item--lang { position: relative; }
+    .nav__item--lang > .lang-menu { left: 0; right: auto; width: max-content; min-width: 100%; padding: var(--s-2) 0; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 var(--r-md) var(--r-md); display: grid; }
+    .lang-menu .lang-link { padding: var(--s-2) var(--s-4); min-height: 44px; }
+    .lang-menu .lang-link:hover { color: var(--action); background: var(--surface); }
+  }
+  /* phone: the header keeps the logo and the menu button; the main action sits in the menu sheet and the hero */
+  @media (max-width: 639px) { .nav:not(.is-open) .nav__actions { display: none; } .nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: auto; } }
+  @media (max-width: 1023px) { .nav.is-open .lang-menu .lang-link { display: flex; min-height: 44px; } }
+  .flag { width: 20px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); flex: none; }
 </style>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 <script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
@@ -79,6 +110,16 @@
       <div class="nav__item"><a class="nav__link" href="#practice">Practice</a></div>
       <div class="nav__item"><a class="nav__link" href="#brazil">Brazil</a></div>
       <div class="nav__item"><a class="nav__link" href="#contact">Contact</a></div>
+      <!--i18n:switch--><div class="nav__item nav__item--lang"><a class="nav__link lang-current" href="#languages" aria-label="Language: English (UK)"><img class="flag" src="flags/gb.svg" width="20" height="14" alt=""><span>English (UK)</span> <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu lang-menu">
+          <a class="lang-link" href="./" hreflang="en-GB" lang="en-GB" aria-current="true"><img class="flag" src="flags/gb.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>English (UK)</span></a>
+          <a class="lang-link" href="es/" hreflang="es-ES" lang="es-ES"><img class="flag" src="flags/es.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Español</span></a>
+          <a class="lang-link" href="fr/" hreflang="fr-FR" lang="fr-FR"><img class="flag" src="flags/fr.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Français</span></a>
+          <a class="lang-link" href="pt-br/" hreflang="pt-BR" lang="pt-BR"><img class="flag" src="flags/br.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Português (Brasil)</span></a>
+          <a class="lang-link" href="de/" hreflang="de-DE" lang="de-DE"><img class="flag" src="flags/de.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Deutsch</span></a>
+          <a class="lang-link" href="zh/" hreflang="zh-CN" lang="zh-CN"><img class="flag" src="flags/cn.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>简体中文</span></a>
+        </div>
+      </div><!--/i18n:switch-->
     </nav>
     <div class="nav__actions">
       <a class="btn btn--primary" href="#consult">Request a consultation</a>
@@ -102,9 +143,9 @@
       </div>
       <div class="hero__media span-6 start-7">
         <!-- stand-in: the Ponte Estaiada (Octávio Frias de Oliveira bridge), São Paulo (Wikimedia Commons, CC0). Client's file to come: the office or the team at work -->
-        <img src="assets/img/photo-f34410442-1280.avif" srcset="assets/img/photo-f34410442-640.avif 640w, assets/img/photo-f34410442-960.avif 960w, assets/img/photo-f34410442-1280.avif 1280w, assets/img/photo-f34410442-1600.avif 1600w, assets/img/photo-f34410442-2000.avif 2000w" sizes="(max-width: 1023px) 100vw, 1020px" width="2000" height="1403" alt="The Ponte Estaiada in São Paulo, its cables fanning from one tall pylon over the Pinheiros river, office towers behind" style="--ly-pos: 56% 50%" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="Ponte Estaiada, São Paulo">
+        <img src="assets/img/photo-f34410442-1280.avif" srcset="assets/img/photo-f34410442-640.avif 640w, assets/img/photo-f34410442-960.avif 960w, assets/img/photo-f34410442-1280.avif 1280w, assets/img/photo-f34410442-1600.avif 1600w, assets/img/photo-f34410442-2000.avif 2000w" sizes="(max-width: 639px) 200vw, (max-width: 1023px) 100vw, 1020px" width="2000" height="1403" alt="The Ponte Estaiada in São Paulo, its cables fanning from one tall pylon over the Pinheiros river, office towers behind" style="--ly-pos: 56% 50%" fetchpriority="high" decoding="async" data-source="stand-in" data-subject="Ponte Estaiada, São Paulo">
         <div class="ly-float">
-          <div class="ly-float__row"><span>Clients</span><span>Brazil and abroad</span></div>
+          <div class="ly-float__row"><span>4 practice areas</span><span>Brazil and abroad</span></div>
           <div class="ly-float__title">Brazilian and foreign companies</div>
         </div>
       </div>
@@ -162,10 +203,10 @@
       <div class="span-6">
         <div class="section-head">
           <h2 id="consult-h">Request a consultation</h2>
-          <p>Describe the matter in a few lines and we answer by email, or <a class="link" href="https://wa.me/5562992818615">write to us on WhatsApp</a>.</p>
+          <p>Describe the matter in a few lines and we answer by email. <a class="link" href="https://wa.me/5562992818615">Write to us on WhatsApp</a></p>
         </div>
         <div class="form-panel">
-        <form class="form" action="mailto:moises@lexvertex.com" method="post" enctype="text/plain" data-endpoint="" novalidate>
+        <form class="form" action="mailto:moises@lexvertex.com" method="post" enctype="text/plain" data-endpoint="" data-fix="Fields to fix: {n}." data-sending="Sending" data-failed="Not sent: the connection failed. Your words are still here; try again." novalidate>
           <div class="field"><label for="f-name">Name</label>
             <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-err">
             <p class="field__error" id="f-name-err" hidden>Write your full name.</p></div>
@@ -204,6 +245,7 @@
         <div class="span-2 footer__col"><h3>Contact</h3><ul><li><a href="mailto:moises@lexvertex.com">Email us</a></li><li><a href="https://wa.me/5562992818615">Write to us on WhatsApp</a></li></ul></div>
         <div class="span-2 footer__col"><h3>Office</h3><ul><li>Goiânia, Goiás</li><li>Brazil</li></ul></div>
       </div>
+      <!--i18n:footer--><nav id="languages" class="lang-grid" aria-label="Language"><a class="lang-link" href="./" hreflang="en-GB" lang="en-GB" aria-current="true"><img class="flag" src="flags/gb.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>English (UK)</span></a><a class="lang-link" href="es/" hreflang="es-ES" lang="es-ES"><img class="flag" src="flags/es.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Español</span></a><a class="lang-link" href="fr/" hreflang="fr-FR" lang="fr-FR"><img class="flag" src="flags/fr.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Français</span></a><a class="lang-link" href="pt-br/" hreflang="pt-BR" lang="pt-BR"><img class="flag" src="flags/br.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Português (Brasil)</span></a><a class="lang-link" href="de/" hreflang="de-DE" lang="de-DE"><img class="flag" src="flags/de.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>Deutsch</span></a><a class="lang-link" href="zh/" hreflang="zh-CN" lang="zh-CN"><img class="flag" src="flags/cn.svg" width="20" height="14" alt="" loading="lazy" decoding="async"><span>简体中文</span></a></nav><!--/i18n:footer-->
       <div class="footer__legal">
         <span>&copy; 2026 Lex Vertex Legal Consulting</span>
         <div class="socials"></div>
@@ -213,9 +255,6 @@
   </div>
 </footer>
 
-<nav class="actionbar" aria-label="Quick actions">
-  <a class="btn btn--primary" href="#consult">Request a consultation</a>
-</nav>
 
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
